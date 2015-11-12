@@ -938,8 +938,8 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                 }
 
                                 // save the various dimensions we'll need
-                                barWidth = width(refs.fullBar);
                                 pointerHalfWidth = halfWidth(refs.minPtr);
+                                barWidth = width(refs.fullBar)+(pointerHalfWidth*2);
 
                                 minOffset = offsetLeft(refs.fullBar);
                                 maxOffset = minOffset + barWidth - width(refs.minPtr);
@@ -1203,7 +1203,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                                                                                  pointerHalfWidth)));
 
                                         // set the selection bar's new position and width
-                                        offset(refs.selBar, offsetFromPercent(stretchedLowPercent + ptrHalfWidthPercent));
+                                        offset(refs.selBar, offsetFromPercent(stretchedLowPercent));
                                         refs.selBar.css({
                                             width: offsetFromPercent(stretchedHighPercent - stretchedLowPercent)
                                         });
@@ -1215,13 +1215,13 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                         // set the low unselected bar's new position and width
                                         refs.unSelBarLow.css({
                                             left : 0,
-                                            width: offsetFromPercent(stretchedLowPercent + ptrHalfWidthPercent)
+                                            width: offsetFromPercent(stretchedLowPercent)
                                         });
 
                                         // set the high unselected bar's new position and width
                                         offset(refs.unSelBarHigh, offsetFromPercent(stretchedHighPercent + ptrHalfWidthPercent));
                                         refs.unSelBarHigh.css({
-                                            right: 0
+                                            right: offsetFromPercent(ptrHalfWidthPercent)
                                         });
 
                                         if(AngularSlider.inputtypes.range) {
@@ -1559,8 +1559,8 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                                                 refs.maxPtr = temp;
 
                                                                 // and the classes
-                                                                refs.minPtr.removeClass('active').removeClass('low').addClass('high');
-                                                                refs.maxPtr.addClass('active').removeClass('high').addClass('low');
+                                                                refs.maxPtr.removeClass('active').removeClass('low').addClass('high');
+                                                                refs.minPtr.addClass('active').removeClass('high').addClass('low');
                                                             }
                                                         }
                                                     }
@@ -1614,7 +1614,7 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
 									
 									if(scope.ngDisabled && scope.ngDisabled == true) return;
 									
-									event.preventDefault();
+									//event.preventDefault();
 
 									/**
 									 * The current x position of the mouse/finger/etc.
