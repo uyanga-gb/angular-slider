@@ -1535,8 +1535,8 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
                                                                 refs.maxPtr = temp;
 
                                                                 // and the classes
-                                                                refs.maxPtr.removeClass('active').removeClass('high').addClass('low');
-                                                                refs.minPtr.addClass('active').removeClass('low').addClass('high');
+                                                                refs.minPtr.removeClass('active').removeClass('high').addClass('low');
+                                                                refs.maxPtr.addClass('active').removeClass('low').addClass('high');
                                                             }
                                                         } else {
                                                             // the high knob is being dragged
